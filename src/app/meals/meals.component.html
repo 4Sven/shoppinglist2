@@ -1,0 +1,24 @@
+<h2> Meal List
+  <span class="badge badge-success">{{count}}</span>
+  <button type="button" class="btn btn-info pull-right" [routerLink]="['../createmeal']">Neues Gericht</button>
+</h2>
+
+<div class="list-group"> 
+  <a *ngFor="let meal of meals"
+     (swiperight)="addMenu(meal.meal_id)"
+     routerLink="/detail/{{meal.meal_id}}" 
+     [class.active]="meal.menu"
+     class="list-group-item list-group-item-action">
+    {{meal.meal_name}}
+  </a>
+  <ngb-pagination 
+    *ngIf="count"
+    [collectionSize]="count" 
+    [(page)]="page"
+    [(pageSize)]="pageSize" 
+    [rotate]="true"
+    [boundaryLinks]="true"
+    (pageChange)="getMeals($event)"
+    aria-label="Default pagination">
+  </ngb-pagination>
+</div>

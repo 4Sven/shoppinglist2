@@ -1,0 +1,55 @@
+<!--
+<p>
+  {{ item | json }}
+  {{ categories | json }}
+  {{ item.category }}
+</p>
+-->
+
+<div *ngIf="item">
+  <h2 *ngIf="mode=='update'"> Details für {{ item.name }}</h2>
+  <h2 *ngIf="mode=='add'">Neues Produkt anlegen</h2>
+  <form (ngSubmit)="onSubmit()" #itemDetailForm="ngForm">
+    <div class="form-group">
+      <label for="id">laufende Nummer</label>
+      <input type="text" class="form-control" id="id" 
+        [(ngModel)]="item.id"
+        name="id"
+        disabled>
+    </div>
+    <div class="form-group">
+      <label for="name">Name des Produktes</label>
+      <input type="text" class="form-control" id="name" 
+        [(ngModel)]="item.name"
+        name="item"
+        required>
+    </div>
+    <div *ngIf="categories" class="form-group">
+      <label for="category">Kategorie</label>
+      <select class="form-control" id="category"
+        [(ngModel)]="item.category" 
+        name="category">
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+    <button type="submit" 
+      *ngIf="mode=='update'"
+      [disabled]="!itemDetailForm.form.valid"
+      class="btn btn-success">Speichern</button>
+    <button type="button"
+      *ngIf="mode=='add'" 
+      [disabled]="!itemDetailForm.form.valid"
+      class="btn btn-default"
+      (click)="newItem(); itemDetailForm.reset()">Hinzufügen</button>
+    <button type="button"
+      class="btn btn-default"
+      (click)="goBack()">Zurück</button>
+    <button type="button"
+      *ngIf="mode=='update'"
+      class="btn btn-warning pull-right"
+      (click)="deleteItem();"
+      >Löschen</button>
+  </form>
+</div>

@@ -1,0 +1,41 @@
+<div *ngIf="meal">
+  <h2 *ngIf="mode=='update'"> Details für {{ meal.meal_name | uppercase }}</h2>
+  <h2 *ngIf="mode=='add'">Neues Gericht anlegen</h2>
+  <form (ngSubmit)="onSubmit()" #mealDetailForm="ngForm">
+    <div class="form-group">
+      <label for="id">laufende Nummer</label>
+      <input type="text" class="form-control" id="meal_id" 
+        [(ngModel)]="meal.meal_id"
+        name="id"
+        disabled>
+    </div>
+    <div class="form-group">
+      <label for="name">Name des Gerichts</label>
+      <input type="text" class="form-control" id="meal_name" 
+        [(ngModel)]="meal.meal_name"
+        name="meal"
+        required>
+    </div>
+    <button type="submit" 
+      *ngIf="mode=='update'"
+      [disabled]="!mealDetailForm.form.valid"
+      class="btn btn-success">Speichern</button>
+    <button type="button"
+      *ngIf="mode=='add'" 
+      [disabled]="!mealDetailForm.form.valid"
+      class="btn btn-default"
+      (click)="newMeal(); mealDetailForm.reset()">Hinzufügen</button>
+    <button type="button"
+      class="btn btn-default"
+      (click)="goBack()">Zurück</button>
+    <button type="button"
+      *ngIf="mode=='add' && lastMeal"
+      class="btn btn-info"
+      [routerLink]="['/detail', lastMeal]">letztes Gericht</button>
+    <button type="button"
+      *ngIf="mode=='update'"
+      class="btn btn-warning pull-right"
+      (click)="deleteMeal();"
+      >Löschen</button>
+  </form>
+</div>

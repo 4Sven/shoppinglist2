@@ -1,0 +1,31 @@
+<!--
+<p>
+  {{ items | json }}
+</p>
+-->
+
+<h2> Artikel Liste
+  <span class="badge badge-success">{{count}}</span>
+  <button type="button" class="btn btn-info pull-right" [routerLink]="['../createitem']">Neuer Artikel</button>
+</h2>
+
+<div class="list-group"> 
+  <a *ngFor="let item of items"
+     routerLink="/item/{{item.id}}" 
+     class="list-group-item list-group-item-action">
+    {{item.name}}
+  </a>
+  <ngb-pagination 
+    *ngIf="count"
+    [collectionSize]="count" 
+    [(page)]="page"
+    [(pageSize)]="pageSize" 
+    [rotate]="true"
+    [boundaryLinks]="true"
+    [maxSize]="3"
+    [rotate]="true"
+    [boundaryLinks]="false"
+    (pageChange)="getItems($event)"
+    aria-label="Default pagination">
+  </ngb-pagination>
+</div>
