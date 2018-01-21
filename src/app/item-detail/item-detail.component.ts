@@ -53,7 +53,24 @@ export class ItemDetailComponent implements OnInit {
       .subscribe(categories => this.categories = categories)
   }
 
+  onSubmit(): void {
+    //this.messageService.addAlert('info', 'Speichern gedrückt ' + this.meal.meal_id + ' ' + this.item.name);
+    this.itemService.updateItem(this.item)
+      .subscribe(data => { });
+    this.location.back();
+  }
 
+  newItem(): void {
+    //this.messageService.addAlert('info', 'Hinzufügen gedrückt ' + this.meal.meal_name);
+    this.itemService.createItem(this.item)
+      .subscribe(data => { this.lastItem = data.insertId });
+  }
+
+  deleteItem(): void {
+    this.itemService.dropItem(this.item)
+      .subscribe(data => {});
+    this.location.back();
+  }
 
   goBack(): void {
     this.location.back();

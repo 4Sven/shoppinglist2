@@ -13,7 +13,7 @@ import { MessagesComponent }    from './messages/messages.component';
 
 import { MealService }          from './meal.service';
 import { MessageService }       from './message.service';
-import { AppRoutingModule }     from './/app-routing.module';
+import { AppRoutingModule }     from './app-routing.module';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { MenuService } from './menu.service';
 import { MenuComponent } from './menu/menu.component';
@@ -24,6 +24,7 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
 import { ItemsComponent } from './items/items.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { ItemService } from './item.service';
+import { UserAuthService } from './user-auth.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,11 @@ import { ItemService } from './item.service';
   ],
   providers: [
     MealService, 
-    MessageService, MenuService, PrintService, CategoriesService, ItemService
+    MessageService, 
+    MenuService, 
+    PrintService, 
+    CategoriesService, 
+    ItemService, UserAuthService
   ],
   bootstrap: [AppComponent]
 })

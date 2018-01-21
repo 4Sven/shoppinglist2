@@ -69,9 +69,38 @@ export class ItemService {
       );
   }
 
+  updateItem (updateData: Item): Observable<any> {
+    return this.http.put<Item>(this.itemUrl + '/' + updateData.id, { 
+          update: {
+            'name': updateData.name,
+            'category': updateData.category
+          }} 
+        )
+      .pipe(
+        tap(data => {this.log(`updated item`)}),
+        catchError(this.handleError<any>('update Item'))
+      )
+  }
 
+  createItem (createData: Item): Observable<any> {
+    return this.http.post<Item>(this.itemUrl, { 
+          add: {
+            'name': createData.name,
+            'category': createData.category
+          }
+        }, httpOptions)
+      .pipe(
+        tap(data => {this.log(`item added`); console.log(data)}),
+        catchError(this.handleError<Item>('addItem'))
+      );
+  }
 
-
-
+  dropItem (dropData: Item): Observable<any> {  
+    return this.http.delete<Item>(this.itemUrl + '/' + dropData.id)
+      .pipe(
+        tap(data => {this.log(`item deleted`); console.log(data)}),
+        catchError(this.handleError<any>('deleteItem'))
+      );
+  }
 
 }
