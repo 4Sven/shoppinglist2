@@ -40,8 +40,9 @@ export class ItemService {
   }
 
   // Rückgabe einer Liste von Items
-  getItems (page:number): Observable<any> {
-    let httpParams = new HttpParams().set('where', '%')
+  getItems (page:number, search?: string): Observable<any> {
+    if(!search) {search='%'} else {search='%' + search + '%'}
+    let httpParams = new HttpParams().set('where', search)
       .set('orderBy', 'name')
       .set('page', page.toString())
       .set('items', '10');

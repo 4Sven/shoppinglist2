@@ -21,6 +21,7 @@ export class ItemsComponent implements OnInit {
   page : number;     // current page
   pageSize : number; // Number of Items per page
   maxSize : number;  // Maximum number of pages to display
+  fSearch : string;  // Suchfeld
 
   ngOnInit() {
     if (this.messageService.getPaginator()) {
@@ -36,14 +37,16 @@ export class ItemsComponent implements OnInit {
   getItems(page:number): void {
     //console.log('getItems Page', page);
     this.messageService.setPaginator(page);
-    this.itemService.getItems(this.page)
+    this.itemService.getItems(this.page, this.fSearch)
       .subscribe(data => {
         this.count = data.headers.get('X-Total-Count'),
         this.items = data.body
       })
   }
 
-
+search(searchString: string): void {
+  this.getItems(this.page);
+}
 
 
 }
