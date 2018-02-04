@@ -22,6 +22,7 @@ export class MealsComponent implements OnInit {
   page : number;     // current page
   pageSize : number; // Number of Items per page
   maxSize : number;  // Maximum number of pages to display
+  fSearch : string;  // Suchfeld
 
   addMenu( meal_id: number ) {
     //this.messageService.addAlert('info','swipe right for id ' + meal_id);
@@ -35,7 +36,7 @@ export class MealsComponent implements OnInit {
   getMeals(page:number): void {
     console.log('getMeals Page', page);
     this.messageService.setPaginator(page);
-    this.mealService.getMeals(this.page)
+    this.mealService.getMeals(this.page, this.fSearch)
       .subscribe(data => {
         this.count = data.headers.get('X-Total-Count'),
         this.meals = data.body
@@ -55,5 +56,9 @@ export class MealsComponent implements OnInit {
     
     this.getMeals(this.page);
   }
+
+search(searchString: string): void {
+  this.getMeals(this.page);
+}
 
 }

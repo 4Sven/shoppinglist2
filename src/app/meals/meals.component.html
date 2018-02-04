@@ -3,6 +3,15 @@
   <button type="button" class="btn btn-info pull-right" [routerLink]="['../createmeal']">Neues Gericht</button>
 </h2>
 
+<div class="input-group">
+  <input #searchBox id="search-box" [(ngModel)]="fSearch" type="text" class="form-control input-lg" placeholder="Suche" aria-label="Suche" />
+  <span class="input-group-btn">
+    <button (click)="search(searchBox.value)" class="btn btn-default input-lg" type="button">
+      <span class="glyphicon glyphicon-search"></span>
+    </button>
+  </span>
+</div>
+<br/>
 <ul class="list-group"> 
   <li *ngFor="let meal of meals"
      class="list-group-item list-group-item-action">

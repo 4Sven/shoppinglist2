@@ -60,7 +60,9 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Menü');
+    const element  = compiled.querySelector('span.navbar-brand');
+    const text     = element.innerText;
+    expect(text).toContain('Haushaltsplaner 2.0');
   }));
 
 });

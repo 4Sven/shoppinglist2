@@ -41,8 +41,9 @@ export class MealService {
   }
 
   // Rückgabe einer Liste von Meals
-  getMeals (page:number): Observable<any> {
-    let httpParams = new HttpParams().set('where', '%')
+  getMeals (page:number, search?: string): Observable<any> {
+    if(!search) {search='%'} else {search='%' + search + '%'}
+    let httpParams = new HttpParams().set('where', search)
       .set('orderBy', 'meal_name')
       .set('page', page.toString())
       .set('items', '10');
