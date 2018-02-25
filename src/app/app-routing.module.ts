@@ -9,20 +9,22 @@ import { CategoriesComponent }  from './categories/categories.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
 import { ItemsComponent }       from './items/items.component';
 import { ItemDetailComponent }  from './item-detail/item-detail.component';
+import { PurchaselistComponent } from './purchaselist/purchaselist.component';
 
 const routes: Routes = [
-  { path: 'meals', component: MealsComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'meals',            component: MealsComponent },
+  { path: 'dashboard',        component: DashboardComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'detail/:id', component: MealDetailComponent },
-  { path: 'createmeal', component: MealDetailComponent },
-  { path: 'menu', component: MenuComponent },
-  { path: 'categories', component: CategoriesComponent },
-  { path: 'category/:id', component: CategoryDetailComponent },
+  { path: 'detail/:id',       component: MealDetailComponent },
+  { path: 'createmeal',       component: MealDetailComponent },
+  { path: 'menu',             component: MenuComponent },
+  { path: 'categories',       component: CategoriesComponent },
+  { path: 'category/:id',     component: CategoryDetailComponent },
   { path: 'createcategories', component: CategoryDetailComponent },
-  { path: 'items', component: ItemsComponent },
-  { path: 'item/:id', component: ItemDetailComponent },
-  { path: 'createitem', component: ItemDetailComponent }
+  { path: 'items',            component: ItemsComponent },
+  { path: 'item/:id',         component: ItemDetailComponent },
+  { path: 'createitem',       component: ItemDetailComponent },
+  { path: 'purchase',         component: PurchaselistComponent }
 ];
 
 @NgModule({

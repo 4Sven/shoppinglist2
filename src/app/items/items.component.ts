@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../item';
 import { ItemService } from '../item.service';
 import { MessageService } from '../message.service';
+import { PurchaseService } from '../purchase.service';
 
 @Component({
   selector: 'app-items',
@@ -13,7 +14,8 @@ export class ItemsComponent implements OnInit {
 
   constructor(
     private itemService: ItemService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private purchaseService: PurchaseService
   ) { }
 
   count: number;
@@ -34,6 +36,14 @@ export class ItemsComponent implements OnInit {
     this.getItems(this.page);
   }
 
+  addPurchases(item:number): void {
+    this.purchaseService.addPurchases(item)
+      .subscribe(data => {
+        //this.messageService.addAlert('info', data.toString())
+      });
+    this.getItems(this.page);
+  }
+
   getItems(page:number): void {
     //console.log('getItems Page', page);
     this.messageService.setPaginator(page);
@@ -44,9 +54,9 @@ export class ItemsComponent implements OnInit {
       })
   }
 
-search(searchString: string): void {
-  this.getItems(this.page);
-}
+  search(searchString: string): void {
+    this.getItems(this.page);
+  }
 
 
 }

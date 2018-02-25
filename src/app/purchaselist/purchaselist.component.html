@@ -1,0 +1,26 @@
+<!--
+<p>
+  {{ purchases | json }}
+</p>
+-->
+
+<h2> Einkaufsliste 
+  <button 
+    *ngIf="purchases?.length"
+    type="button" 
+    class="btn btn-info pull-right" 
+    (click)="cleanPurchases();"
+    >Liste leeren</button>
+</h2>
+
+
+<div *ngFor="let category of purchases">
+  <h5>{{category.category}}</h5>
+  <div class="list-group"> 
+    <a *ngFor="let purchase of category.content" 
+       class="list-group-item list-group-item-action">
+      {{purchase.item}}
+      <span class="badge badge-success">{{purchase.quantity}}</span>
+    </a>
+  </div>
+</div>

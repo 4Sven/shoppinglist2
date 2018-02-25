@@ -25,6 +25,8 @@ import { ItemsComponent } from './items/items.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { ItemService } from './item.service';
 import { UserAuthService } from './user-auth.service';
+import { PurchaselistComponent } from './purchaselist/purchaselist.component';
+import { PurchaseService } from './purchase.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { UserAuthService } from './user-auth.service';
     CategoryDetailComponent,
     ItemsComponent,
     ItemDetailComponent,
+    PurchaselistComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,7 @@ import { UserAuthService } from './user-auth.service';
     MenuService, 
     PrintService, 
     CategoriesService, 
-    ItemService, UserAuthService
+    ItemService, UserAuthService, PurchaseService
   ],
   bootstrap: [AppComponent]
 })

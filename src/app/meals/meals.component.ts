@@ -57,8 +57,8 @@ export class MealsComponent implements OnInit {
     this.getMeals(this.page);
   }
 
-search(searchString: string): void {
-  this.getMeals(this.page);
-}
+  search(searchString: string): void {
+    this.getMeals(this.page);
+  }
 
 }
